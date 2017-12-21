@@ -10,6 +10,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Common">
+      <UniqueIdentifier>{f4fde86d-ac44-4d2f-8aa3-2ff4777e5f45}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -21,6 +24,21 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\CParticle.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CParticleSystem.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ParticleSystemScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Common\CDraggableSprite.cpp">
+      <Filter>src\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Common\CSwitchButton.cpp">
+      <Filter>src\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -31,6 +49,21 @@
     </ClInclude>
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CParticle.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CParticleSystem.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ParticleSystemScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Common\CDraggableSprite.h">
+      <Filter>src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Common\CSwitchButton.h">
+      <Filter>src\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
