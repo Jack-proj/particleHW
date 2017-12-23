@@ -44,8 +44,10 @@ public:
  //   void onTouchesEnded(const cocos2d::CCPoint &touchPoint);
     void onTouchesBegan(const cocos2d::CCPoint &touchPoint);
     void onTouchesMoved(const cocos2d::CCPoint &touchPoint);
-
+	
 	void setGravity(float fGravity);
+	void setOpacity(float fOpacity);
+	void setSpeed(float fSpeed);
 };
 
 #endif

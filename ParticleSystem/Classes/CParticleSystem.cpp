@@ -94,6 +94,17 @@ void CParticleSystem::setGravity(float fGravity)
 	}
 }
 
+void CParticleSystem::setOpacity(float fOpacity)
+{
+
+}
+
+void CParticleSystem::setSpeed(float fSpeed) {
+
+	_fVelocity = fSpeed;
+
+}
+
 CParticleSystem::~CParticleSystem()
 {
 	if (_iInUsed != 0) _InUsedList.clear(); // 移除所有的 NODE

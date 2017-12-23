@@ -151,7 +151,6 @@ xcopy /Y /Q "$(COCOS_X_ROOT)\cocos2d-x-3.10\prebuilt\win32\*.*" "$(OutDir)"
     <ClCompile Include="..\Classes\Common\CSwitchButton.cpp" />
     <ClCompile Include="..\Classes\CParticle.cpp" />
     <ClCompile Include="..\Classes\CParticleSystem.cpp" />
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\ParticleSystemScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -161,7 +160,6 @@ xcopy /Y /Q "$(COCOS_X_ROOT)\cocos2d-x-3.10\prebuilt\win32\*.*" "$(OutDir)"
     <ClInclude Include="..\Classes\Common\CSwitchButton.h" />
     <ClInclude Include="..\Classes\CParticle.h" />
     <ClInclude Include="..\Classes\CParticleSystem.h" />
-    <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\ParticleSystemScene.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>

@@ -93,8 +93,55 @@ bool ParticleSystemScene::init()
 	DirectionSlider->addEventListener(CC_CALLBACK_2(ParticleSystemScene::DirectionEvent, this));
 	DirectionSlider->setMaxPercent(100); 	// 將 0 到 100 對應到 0 到 360 之間
 	_DirectionBMValue = (cocos2d::ui::TextBMFont *)rootNode->getChildByName("DirectionBMFont");
+	
+	// Slider of Spin
+	auto *SpinSlider = (cocos2d::ui::Slider *)(rootNode->getChildByName("Slider_Spin"));
+	SpinSlider->addEventListener(CC_CALLBACK_2(ParticleSystemScene::SpinEvent, this));
+	SpinSlider->setMaxPercent(100); 	// 將 0 到 100 對應到 0 到 360 之間
+	_SpinBMValue = (cocos2d::ui::TextBMFont *)rootNode->getChildByName("SpinBMFont");
 
+	// Slider of Opacity
+	auto *OpacitySlider = (cocos2d::ui::Slider *)(rootNode->getChildByName("Slider_Opacity"));
+	OpacitySlider->addEventListener(CC_CALLBACK_2(ParticleSystemScene::OpacityEvent, this));
+	OpacitySlider->setMaxPercent(100); 	// 將 0 到 100 對應到 0 到 360 之間
+	_OpacityBMValue = (cocos2d::ui::TextBMFont *)rootNode->getChildByName("OpacityBMFont");
 
+	// Slider of Particles
+	auto *ParticlesSlider = (cocos2d::ui::Slider *)(rootNode->getChildByName("Slider_Particles"));
+	ParticlesSlider->addEventListener(CC_CALLBACK_2(ParticleSystemScene::ParticlesEvent, this));
+	ParticlesSlider->setMaxPercent(100); 	// 將 0 到 100 對應到 0 到 360 之間
+	_ParticlesBMValue = (cocos2d::ui::TextBMFont *)rootNode->getChildByName("ParticlesBMFont");
+
+	// Slider of Speed
+	auto *SpeedSlider = (cocos2d::ui::Slider *)(rootNode->getChildByName("Slider_Speed"));
+	SpeedSlider->addEventListener(CC_CALLBACK_2(ParticleSystemScene::SpeedEvent, this));
+	SpeedSlider->setMaxPercent(100); 	// 將 0 到 100 對應到 0 到 360 之間
+	_SpeedBMValue = (cocos2d::ui::TextBMFont *)rootNode->getChildByName("SpeedBMFont");
+
+	// Slider of Lifetime
+	auto *LifetimeSlider = (cocos2d::ui::Slider *)(rootNode->getChildByName("Slider_Lifetime"));
+	LifetimeSlider->addEventListener(CC_CALLBACK_2(ParticleSystemScene::LifetimeEvent, this));
+	LifetimeSlider->setMaxPercent(100); 	// 將 0 到 100 對應到 0 到 360 之間
+	_LifetimeBMValue = (cocos2d::ui::TextBMFont *)rootNode->getChildByName("LifetimeBMFont");
+
+	// Slider of Red
+	auto *RedSlider = (cocos2d::ui::Slider *)(rootNode->getChildByName("Slider_Red"));
+	RedSlider->addEventListener(CC_CALLBACK_2(ParticleSystemScene::RedEvent, this));
+	RedSlider->setMaxPercent(100); 	// 將 0 到 100 對應到 0 到 360 之間
+	_RedBMValue = (cocos2d::ui::TextBMFont *)rootNode->getChildByName("RedBMFont");
+
+	// Slider of Green
+	auto *GreenSlider = (cocos2d::ui::Slider *)(rootNode->getChildByName("Slider_Green"));
+	GreenSlider->addEventListener(CC_CALLBACK_2(ParticleSystemScene::GreenEvent, this));
+	GreenSlider->setMaxPercent(100); 	// 將 0 到 100 對應到 0 到 360 之間
+	_GreenBMValue = (cocos2d::ui::TextBMFont *)rootNode->getChildByName("GreenBMFont");
+
+	// Slider of Blue
+	auto *BlueSlider = (cocos2d::ui::Slider *)(rootNode->getChildByName("Slider_Blue"));
+	BlueSlider->addEventListener(CC_CALLBACK_2(ParticleSystemScene::BlueEvent, this));
+	BlueSlider->setMaxPercent(100); 	// 將 0 到 100 對應到 0 到 360 之間
+	_BlueBMValue = (cocos2d::ui::TextBMFont *)rootNode->getChildByName("BlueBMFont");
+	
 	// Slider of Type
 	auto *TypeSlider = (cocos2d::ui::Slider *)(rootNode->getChildByName("Slider_Type"));
 	TypeSlider->addEventListener(CC_CALLBACK_2(ParticleSystemScene::TypeEvent, this));
@@ -198,6 +245,100 @@ void ParticleSystemScene::DirectionEvent(cocos2d::Ref* sender, cocos2d::ui::Slid
 	}
 }
 
+void ParticleSystemScene::SpinEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type)
+{
+	if (type == Slider::EventType::ON_PERCENTAGE_CHANGED)
+	{
+		Slider* slider = dynamic_cast<Slider*>(sender);
+		int percent = slider->getPercent();
+		int maxPercent = slider->getMaxPercent();
+		float fSpin = percent*3.6f; // 0 到 360 之間
+		_SpinBMValue->setString(StringUtils::format("%2.1f", fSpin));
+		//_ParticleControl._fDir = fDir;
+	}
+}
+
+void ParticleSystemScene::OpacityEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type) {
+	if (type == Slider::EventType::ON_PERCENTAGE_CHANGED) {
+		Slider* slider = dynamic_cast<Slider*>(sender);
+		int percent = slider->getPercent(); // 捲動鈕目前的位置 0 ~ 100
+		// 將 0 到 100 對應到 0 到 255 之間
+		float fOpacity = percent * 2.55f;
+		// 透過 _GravityBMValue 顯示在畫面上
+		_OpacityBMValue->setString(StringUtils::format("%2.1f", fOpacity));
+		//_ParticleControl.setOpacity(fOpacity);
+	}
+}
+
+void ParticleSystemScene::ParticlesEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type) {
+	if (type == Slider::EventType::ON_PERCENTAGE_CHANGED) {
+		Slider* slider = dynamic_cast<Slider*>(sender);
+		int percent = slider->getPercent(); // 捲動鈕目前的位置 0 ~ 100
+		// 透過 _GravityBMValue 顯示在畫面上
+		_ParticlesBMValue->setString(StringUtils::format("%d", percent));
+		//_ParticleControl.setOpacity(fOpacity);
+	}
+}
+
+void ParticleSystemScene::SpeedEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type) {
+	if (type == Slider::EventType::ON_PERCENTAGE_CHANGED) {
+		Slider* slider = dynamic_cast<Slider*>(sender);
+		int percent = slider->getPercent(); // 捲動鈕目前的位置 0 ~ 100
+		// 將 0 到 100 對應到 0 到 40 之間
+		float fSpeed = percent / 2.5f;
+		// 透過 _GravityBMValue 顯示在畫面上
+		_SpeedBMValue->setString(StringUtils::format("%2.1f", fSpeed));
+		_ParticleControl.setSpeed(fSpeed);
+	}
+}
+
+void ParticleSystemScene::LifetimeEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type) {
+	if (type == Slider::EventType::ON_PERCENTAGE_CHANGED) {
+		Slider* slider = dynamic_cast<Slider*>(sender);
+		int percent = slider->getPercent(); // 捲動鈕目前的位置 0 ~ 100
+		// 將 0 到 100 對應到 0 到 255 之間
+		float fLifetime = percent / 25.0f;
+		// 透過 _GravityBMValue 顯示在畫面上
+		_LifetimeBMValue->setString(StringUtils::format("%2.1f", fLifetime));
+		//_ParticleControl.setOpacity(fOpacity);
+	}
+}
+
+void ParticleSystemScene::RedEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type) {
+	if (type == Slider::EventType::ON_PERCENTAGE_CHANGED) {
+		Slider* slider = dynamic_cast<Slider*>(sender);
+		int percent = slider->getPercent(); // 捲動鈕目前的位置 0 ~ 100
+		// 將 0 到 100 對應到 0 到 255 之間
+		float fRed = percent * 2.55f;
+		// 透過 _GravityBMValue 顯示在畫面上
+		_RedBMValue->setString(StringUtils::format("%2.1f", fRed));
+		//_ParticleControl.setOpacity(fOpacity);
+	}
+}
+
+void ParticleSystemScene::GreenEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type) {
+	if (type == Slider::EventType::ON_PERCENTAGE_CHANGED) {
+		Slider* slider = dynamic_cast<Slider*>(sender);
+		int percent = slider->getPercent(); // 捲動鈕目前的位置 0 ~ 100
+		// 將 0 到 100 對應到 0 到 255 之間
+		float fGreen = percent * 2.55f;
+		// 透過 _GravityBMValue 顯示在畫面上
+		_GreenBMValue->setString(StringUtils::format("%2.1f", fGreen));
+		//_ParticleControl.setOpacity(fOpacity);
+	}
+}
+
+void ParticleSystemScene::BlueEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type) {
+	if (type == Slider::EventType::ON_PERCENTAGE_CHANGED) {
+		Slider* slider = dynamic_cast<Slider*>(sender);
+		int percent = slider->getPercent(); // 捲動鈕目前的位置 0 ~ 100
+		// 將 0 到 100 對應到 0 到 255 之間
+		float fBlue = percent * 2.55f;
+		// 透過 _GravityBMValue 顯示在畫面上
+		_BlueBMValue->setString(StringUtils::format("%2.1f", fBlue));
+		//_ParticleControl.setOpacity(fOpacity);
+	}
+}
 
 void ParticleSystemScene::TypeEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type)
 {
