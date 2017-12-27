@@ -94,6 +94,12 @@ void CParticleSystem::setGravity(float fGravity)
 	}
 }
 
+void CParticleSystem::setSpin(float fSpin)
+{
+	_fSpin = fSpin;
+
+}
+
 void CParticleSystem::setOpacity(float fOpacity)
 {
 

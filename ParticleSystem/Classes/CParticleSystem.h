@@ -46,8 +46,10 @@ public:
     void onTouchesMoved(const cocos2d::CCPoint &touchPoint);
 	
 	void setGravity(float fGravity);
+	void setSpin(float fSpin);
 	void setOpacity(float fOpacity);
 	void setSpeed(float fSpeed);
+
 };
 
 #endif

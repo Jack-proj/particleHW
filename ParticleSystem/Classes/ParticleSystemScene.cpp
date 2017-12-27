@@ -254,7 +254,7 @@ void ParticleSystemScene::SpinEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::E
 		int maxPercent = slider->getMaxPercent();
 		float fSpin = percent*3.6f; // 0 到 360 之間
 		_SpinBMValue->setString(StringUtils::format("%2.1f", fSpin));
-		//_ParticleControl._fDir = fDir;
+		_ParticleControl.setSpin(fSpin);
 	}
 }
 
@@ -274,8 +274,10 @@ void ParticleSystemScene::ParticlesEvent(cocos2d::Ref* sender, cocos2d::ui::Slid
 	if (type == Slider::EventType::ON_PERCENTAGE_CHANGED) {
 		Slider* slider = dynamic_cast<Slider*>(sender);
 		int percent = slider->getPercent(); // 捲動鈕目前的位置 0 ~ 100
+		// 將 0 到 100 對應到 0 到 40 之間
+		int iParticles = percent * 2;
 		// 透過 _GravityBMValue 顯示在畫面上
-		_ParticlesBMValue->setString(StringUtils::format("%d", percent));
+		_ParticlesBMValue->setString(StringUtils::format("%d", iParticles));
 		//_ParticleControl.setOpacity(fOpacity);
 	}
 }
