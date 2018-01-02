@@ -8,6 +8,8 @@ CParticleSystem::CParticleSystem()
 {
 	_fGravity = 0;
 	_bEmitterOn = false;
+	_fOpacity = 255;
+	_color = Color3B(128 + rand() % 128, 128 + rand() % 128, 128 + rand() % 128);
 }
 
 void CParticleSystem::setEmitter(bool bEm)
@@ -31,6 +33,7 @@ void CParticleSystem::init(cocos2d::Layer &inlayer)
 void CParticleSystem::doStep(float dt)
 {
 	CParticle *get;
+
 	list <CParticle *>::iterator it;	
 	if (_bEmitterOn) { // 根據 Emitter 設定的相關參數，產生相對應的分子
 		// 先計算在累加
@@ -43,9 +46,12 @@ void CParticleSystem::doStep(float dt)
 					get->setBehavior(EMITTER_DEFAULT);
 					get->setVelocity(_fVelocity);
 					get->setLifetime(_fLifeTime);
+					get->setOpacity(_fOpacity);
 					get->setGravity(_fGravity);
 					get->setPosition(_emitterPt);
 					get->setSize(0.125f);
+					get->setSpin(_fSpin);
+					get->_color = _color;
 					// 根據 _fSpread 與 _vDir 產生方向
 					float t = (rand() % 1001) / 1000.0f; // 產生介於 0 到 1 間的數
 					t = _fSpread - t * _fSpread * 2; //  產生的角度，轉成弧度
@@ -57,8 +63,7 @@ void CParticleSystem::doStep(float dt)
 					_iFree--; _iInUsed++;
 				}
 			}
-			_iGenParticles = n; // 目前已經產生 n 個分子
-			
+			_iGenParticles = n; // 目前已經產生 n 個分子		
 		}
 		if (_fElpasedTime >= 1.0f) {
 			_fElpasedTime -= 1.0f;
@@ -70,8 +75,9 @@ void CParticleSystem::doStep(float dt)
 
 	if (_iInUsed != 0) { // 有分子需要更新時
 		for (it = _InUsedList.begin(); it != _InUsedList.end(); ) {
-			if ((*it)->doStep(dt)) { // 分子生命週期已經到達
-									 // 將目前這一個節點的內容放回 _FreeList
+			if ((*it)->doStep(dt))
+			{ // 分子生命週期已經到達
+				 // 將目前這一個節點的內容放回 _FreeList
 				_FreeList.push_front((*it));
 				it = _InUsedList.erase(it); // 移除目前這一個, 
 				_iFree++; _iInUsed--;
@@ -97,12 +103,17 @@ void CParticleSystem::setGravity(float fGravity)
 void CParticleSystem::setSpin(float fSpin)
 {
 	_fSpin = fSpin;
-
 }
 
 void CParticleSystem::setOpacity(float fOpacity)
 {
-
+	_fOpacity = fOpacity;
+	list <CParticle *>::iterator it;
+	if (_iInUsed != 0) { // 有分子需要更新時
+		for (it = _InUsedList.begin(); it != _InUsedList.end(); it++) {
+			(*it)->setOpacity(_fOpacity);
+		}
+	}
 }
 
 void CParticleSystem::setSpeed(float fSpeed) {
@@ -110,6 +121,37 @@ void CParticleSystem::setSpeed(float fSpeed) {
 	_fVelocity = fSpeed;
 
 }
+
+void CParticleSystem::setRed(float fRed)
+{
+	_color.r = fRed;
+}
+
+void CParticleSystem::setGreen(float fGreen)
+{
+	_color.g = fGreen;
+}
+
+void CParticleSystem::setBlue(float fBlue)
+{
+	_color.b = fBlue;
+}
+
+void CParticleSystem::setNewPic(const char *pngName, cocos2d::Layer &inlayer)
+{
+	const char * _pngName = pngName;
+	list <CParticle *>::iterator it;
+	if (_iInUsed !=0 )
+	{ // 有分子需要更新時
+		for (it = _InUsedList.begin(); it != _InUsedList.end();it++ ) {
+			(*it)->pic(pngName);
+		}
+		for (it = _FreeList.begin(); it != _FreeList.end(); it++) {
+			(*it)->pic(pngName);
+		}
+	}
+}
+
 
 CParticleSystem::~CParticleSystem()
 {

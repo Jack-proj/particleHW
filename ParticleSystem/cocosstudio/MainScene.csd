@@ -173,7 +173,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Slider_Lifetime" ActionTag="-1185097582" Tag="44" IconVisible="False" LeftMargin="1003.1488" RightMargin="26.8512" TopMargin="490.8611" BottomMargin="216.1389" TouchEnable="True" PercentInfo="50" ctype="SliderObjectData">
+          <AbstractNodeData Name="Slider_Lifetime" ActionTag="-1185097582" Tag="44" IconVisible="False" LeftMargin="1003.1488" RightMargin="26.8512" TopMargin="490.8611" BottomMargin="216.1389" TouchEnable="True" PercentInfo="70" ctype="SliderObjectData">
             <Size X="250.0000" Y="13.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1128.1488" Y="222.6389" />
@@ -458,6 +458,147 @@
             <Scale ScaleX="0.8500" ScaleY="0.8500" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.7377" Y="0.0762" />
+            <PreSize X="0.0117" Y="0.0431" />
+            <LabelBMFontFile_CNB Type="Normal" Path="couriernew32.fnt" Plist="" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Button_bubble" ActionTag="-1892478098" Tag="40" IconVisible="False" LeftMargin="15.5436" RightMargin="1200.4563" TopMargin="640.1647" BottomMargin="15.8354" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="34" Scale9Height="42" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="64.0000" Y="64.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="47.5436" Y="47.8354" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.0371" Y="0.0664" />
+            <PreSize X="0.0500" Y="0.0889" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="PlistSubImage" Path="bubble.png" Plist="particletexture.plist" />
+            <PressedFileData Type="PlistSubImage" Path="bubble.png" Plist="particletexture.plist" />
+            <NormalFileData Type="PlistSubImage" Path="bubble.png" Plist="particletexture.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Button_circle" ActionTag="2001284826" Tag="41" IconVisible="False" LeftMargin="93.0363" RightMargin="1122.9636" TopMargin="640.1647" BottomMargin="15.8354" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="34" Scale9Height="42" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="64.0000" Y="64.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="125.0363" Y="47.8354" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.0977" Y="0.0664" />
+            <PreSize X="0.0500" Y="0.0889" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="PlistSubImage" Path="circle.png" Plist="particletexture.plist" />
+            <PressedFileData Type="PlistSubImage" Path="circle.png" Plist="particletexture.plist" />
+            <NormalFileData Type="PlistSubImage" Path="circle.png" Plist="particletexture.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Button_cloud" ActionTag="1557573151" Tag="42" IconVisible="False" LeftMargin="170.5291" RightMargin="1045.4709" TopMargin="640.1647" BottomMargin="15.8354" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="34" Scale9Height="42" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="64.0000" Y="64.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="202.5291" Y="47.8354" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1582" Y="0.0664" />
+            <PreSize X="0.0500" Y="0.0889" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="PlistSubImage" Path="cloud.png" Plist="particletexture.plist" />
+            <PressedFileData Type="PlistSubImage" Path="cloud.png" Plist="particletexture.plist" />
+            <NormalFileData Type="PlistSubImage" Path="cloud.png" Plist="particletexture.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Button_comet" ActionTag="-2066664155" Tag="43" IconVisible="False" LeftMargin="248.0217" RightMargin="967.9783" TopMargin="640.1647" BottomMargin="15.8354" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="34" Scale9Height="42" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="64.0000" Y="64.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="280.0217" Y="47.8354" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.2188" Y="0.0664" />
+            <PreSize X="0.0500" Y="0.0889" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="PlistSubImage" Path="comet.png" Plist="particletexture.plist" />
+            <PressedFileData Type="PlistSubImage" Path="comet.png" Plist="particletexture.plist" />
+            <NormalFileData Type="PlistSubImage" Path="comet.png" Plist="particletexture.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Button_flare" ActionTag="2015310146" Tag="44" IconVisible="False" LeftMargin="325.5145" RightMargin="890.4855" TopMargin="640.1647" BottomMargin="15.8354" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="34" Scale9Height="42" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="64.0000" Y="64.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="357.5145" Y="47.8354" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.2793" Y="0.0664" />
+            <PreSize X="0.0500" Y="0.0889" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="PlistSubImage" Path="flare.png" Plist="particletexture.plist" />
+            <PressedFileData Type="PlistSubImage" Path="flare.png" Plist="particletexture.plist" />
+            <NormalFileData Type="PlistSubImage" Path="flare.png" Plist="particletexture.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Button_raindrop" ActionTag="1546765916" Tag="45" IconVisible="False" LeftMargin="403.0071" RightMargin="812.9929" TopMargin="640.1647" BottomMargin="15.8354" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="34" Scale9Height="42" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="64.0000" Y="64.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="435.0071" Y="47.8354" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.3398" Y="0.0664" />
+            <PreSize X="0.0500" Y="0.0889" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="PlistSubImage" Path="raindrop.png" Plist="particletexture.plist" />
+            <PressedFileData Type="PlistSubImage" Path="raindrop.png" Plist="particletexture.plist" />
+            <NormalFileData Type="PlistSubImage" Path="raindrop.png" Plist="particletexture.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Button_spark" ActionTag="-1245558074" Tag="46" IconVisible="False" LeftMargin="480.4998" RightMargin="735.5002" TopMargin="640.1647" BottomMargin="15.8354" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="34" Scale9Height="42" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="64.0000" Y="64.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="512.4998" Y="47.8354" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.4004" Y="0.0664" />
+            <PreSize X="0.0500" Y="0.0889" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="PlistSubImage" Path="spark.png" Plist="particletexture.plist" />
+            <PressedFileData Type="PlistSubImage" Path="spark.png" Plist="particletexture.plist" />
+            <NormalFileData Type="PlistSubImage" Path="spark.png" Plist="particletexture.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Slider_Wind" ActionTag="1271762063" Tag="47" IconVisible="False" LeftMargin="737.6830" RightMargin="292.3170" TopMargin="47.4540" BottomMargin="659.5460" TouchEnable="True" PercentInfo="50" ctype="SliderObjectData">
+            <Size X="250.0000" Y="13.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="862.6830" Y="666.0460" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.6740" Y="0.9251" />
+            <PreSize X="0.1953" Y="0.0181" />
+            <BackGroundData Type="PlistSubImage" Path="sliderTrack.png" Plist="particletexture.plist" />
+            <ProgressBarData Type="PlistSubImage" Path="sliderProgress.png" Plist="particletexture.plist" />
+            <BallNormalData Type="PlistSubImage" Path="sliderballnormal.png" Plist="particletexture.plist" />
+            <BallPressedData Type="PlistSubImage" Path="sliderballpressed.png" Plist="particletexture.plist" />
+            <BallDisabledData Type="Default" Path="Default/SliderNode_Disable.png" Plist="" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Text_wind" ActionTag="1401767065" Tag="48" IconVisible="False" LeftMargin="746.5201" RightMargin="487.4799" TopMargin="13.7601" BottomMargin="683.2399" FontSize="20" LabelText="Wind" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="46.0000" Y="23.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="769.5201" Y="694.7399" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.6012" Y="0.9649" />
+            <PreSize X="0.0359" Y="0.0319" />
+            <FontResource Type="Normal" Path="arial.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="WindBMFont" ActionTag="1347805341" Tag="50" IconVisible="False" LeftMargin="960.9792" RightMargin="304.0208" TopMargin="10.2666" BottomMargin="678.7334" LabelText="0" ctype="TextBMFontObjectData">
+            <Size X="15.0000" Y="31.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="968.4792" Y="694.2334" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.7566" Y="0.9642" />
             <PreSize X="0.0117" Y="0.0431" />
             <LabelBMFontFile_CNB Type="Normal" Path="couriernew32.fnt" Plist="" />
           </AbstractNodeData>

@@ -32,6 +32,12 @@ CParticle::CParticle()
 bool CParticle::doStep(float dt)
 {
 	float cost, sint;
+
+	//spin
+	float degree = _Particle->getRotation();
+	degree += dt *_fSpin; // 計算 dt 時間內轉動的角度量，並累加到目前的角度中
+	_Particle->setRotation(degree);
+
 	switch (_iType) {
 	case STAY_FOR_TWOSECONDS:
 		if (!_bVisible && _fElapsedTime >= _fDelayTime ) {
@@ -187,6 +193,22 @@ bool CParticle::doStep(float dt)
 			_Particle->setPosition(_Pos);
 		}
 		break;
+	case EMITTER_FIREWORKS:	//煙火
+		if (!_bVisible && _fElapsedTime >= _fDelayTime) {
+			_fElapsedTime = _fElapsedTime - _fDelayTime; // 重新開始計時
+			_bVisible = true;
+			_Particle->setVisible(_bVisible);
+			_Particle->setColor(_color);
+			_Particle->setPosition(_Pos);
+		}
+		else if (_fElapsedTime > _fLifeTime) {
+			_bVisible = false;
+			_Particle->setVisible(_bVisible);
+			return true; // 分子生命週期已經結束
+		}
+		else {
+
+		}
 	}
 	// 累加時間
 	_fElapsedTime += dt;
@@ -309,7 +331,6 @@ void CParticle::setLifetime(const float lt) {
 	_fLifeTime = lt + LIFE_NOISE(0.15f);;
 }
 
-
 void CParticle::setParticle(const char *pngName, cocos2d::Layer &inlayer)
 {
 	_Particle = Sprite::createWithSpriteFrameName(pngName);
@@ -323,6 +344,11 @@ void CParticle::setParticle(const char *pngName, cocos2d::Layer &inlayer)
 	BlendFunc blendfunc = { GL_SRC_ALPHA, GL_ONE };
 	_Particle->setBlendFunc(blendfunc);
 	inlayer.addChild(_Particle, 1);
+}
+
+void CParticle::pic(const char *pngName)
+{
+	_Particle->setSpriteFrame(pngName);
 }
 
 void CParticle::setVisible()
@@ -340,4 +366,13 @@ void CParticle::setGravity(const float fGravity)
 	_fGravity = fGravity;
 }
 
+void CParticle::setSpin(float fSpin)
+{
+	_fSpin = fSpin;
+}
+
+void CParticle::setOpacity(const float fOpacity)
+{
+	_fOpacity = fOpacity;
+}
 

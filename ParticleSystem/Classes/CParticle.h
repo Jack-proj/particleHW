@@ -9,6 +9,7 @@
 #define BUTTERFLYSHAPE	5		// 噴射出蝴蝶外型的煙火
 
 #define EMITTER_DEFAULT 99
+#define EMITTER_FIREWORKS 100 //煙火
 #include "cocos2d.h"
 
 class CParticle
@@ -26,7 +27,7 @@ private:
 	float _fSpin;		// 分子的旋轉量
 	float _fSize;		// 分子的大小
 	float _fGravity;	// 分子的大小
-	cocos2d::Color3B _color;	// 分子的顏色
+	//cocos2d::Color3B _color;	// 分子的顏色
 	// 時間
 	float _fElapsedTime; // 分子從顯示到目前為止的時間
 	float _fDelayTime;	 // 分子顯示前的延遲時間
@@ -36,19 +37,25 @@ private:
 	bool _bVisible;
 	
 public:
+	cocos2d::Color3B _color;	// 分子的顏色
 	CParticle();
 	void setParticle(const char *pngName, cocos2d::Layer &inlayer);
 
 	bool doStep(float dt);
 	void setPosition(const cocos2d::Point &inPos);
 	void setColor(cocos2d::Color3B &color) { _color = color;}
-	void setBehavior(int iType); // 設定分子產生的起始行為模式
+	void setBehavior(int iType);
+
+	void pic(const char * pngName);
+	// 設定分子產生的起始行為模式
 	void setVisible();
 	void setGravity(const float fGravity);
 	void setVelocity(const float v) { _fVelocity = v; }
 	void setLifetime(const float lt);
 	void setDirection(const cocos2d::Point pt) { _Direction = pt; }
 	void setSize(float s) { _fSize = s; _Particle->setScale(_fSize); }
+	void setSpin(float fSpin);
+	void setOpacity(const float fOpacity);
 };
 
 #endif

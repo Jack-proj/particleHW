@@ -25,6 +25,7 @@ private:
 	cocos2d::ui::TextBMFont *_RedBMValue;
 	cocos2d::ui::TextBMFont *_GreenBMValue;
 	cocos2d::ui::TextBMFont *_BlueBMValue;
+	cocos2d::ui::TextBMFont *_WindBMValue;
 	
 	// 選擇不同的分子型態，用在 Emitter 沒有開啟的狀態
 	cocos2d::ui::TextBMFont *_TypeBMValue;
@@ -34,6 +35,14 @@ private:
 	bool _bEmitterOn;
 	CSwitchButton *_emitterSwitchBtn;
 	
+	CSwitchButton *_bubbleBtn;
+	CSwitchButton *_circleBtn;
+	CSwitchButton *_cloudBtn;
+	CSwitchButton *_cometBtn;
+	CSwitchButton *_flareBtn;
+	CSwitchButton *_raindropBtn;
+	CSwitchButton *_sparkBtn;
+
 
 
 public:
@@ -65,7 +74,7 @@ public:
 	void RedEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type);
 	void GreenEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type);
 	void BlueEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type);
-
+	void WindEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type);
 
 	void TypeEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type);
 

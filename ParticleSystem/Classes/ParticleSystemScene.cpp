@@ -59,6 +59,63 @@ bool ParticleSystemScene::init()
 	_emitterSwitchBtn->setButtonInfo("emitteroff.png", "emitteron.png", "emittertd.png", loc);
 	this->addChild(_emitterSwitchBtn, 2);
 
+	//for bubble
+	auto bubblepos = (Sprite *)(rootNode->getChildByName("Button_bubble"));
+	Point bubbleloc = bubblepos->getPosition();
+	bubblepos->setVisible(false);
+	_bubbleBtn = CSwitchButton::create();
+	_bubbleBtn->setButtonInfo("bubble.png", "bubble.png", "bubble.png", bubbleloc);
+	this->addChild(_bubbleBtn, 2);
+
+	//for circle
+	auto circlepos = (Sprite *)(rootNode->getChildByName("Button_circle"));
+	Point circleloc = circlepos->getPosition();
+	circlepos->setVisible(false);
+	_circleBtn = CSwitchButton::create();
+	_circleBtn->setButtonInfo("circle.png", "circle.png", "circle.png", circleloc);
+	this->addChild(_circleBtn, 2);
+
+	//for cloud
+	auto cloudpos = (Sprite *)(rootNode->getChildByName("Button_cloud"));
+	Point cloudloc = cloudpos->getPosition();
+	cloudpos->setVisible(false);
+	_cloudBtn = CSwitchButton::create();
+	_cloudBtn->setButtonInfo("cloud.png", "cloud.png", "cloud.png", cloudloc);
+	this->addChild(_cloudBtn, 2);
+
+	//for comet
+	auto cometpos = (Sprite *)(rootNode->getChildByName("Button_comet"));
+	Point cometloc = cometpos->getPosition();
+	cometpos->setVisible(false);
+	_cometBtn = CSwitchButton::create();
+	_cometBtn->setButtonInfo("comet.png", "comet.png", "comet.png", cometloc);
+	this->addChild(_cometBtn, 2);
+
+	//for flare
+	auto flarepos = (Sprite *)(rootNode->getChildByName("Button_flare"));
+	Point flareloc = flarepos->getPosition();
+	flarepos->setVisible(false);
+	_flareBtn = CSwitchButton::create();
+	_flareBtn->setButtonInfo("flare.png", "flare.png", "flare.png", flareloc);
+	this->addChild(_flareBtn, 2);
+
+	//for raindrop
+	auto raindroppos = (Sprite *)(rootNode->getChildByName("Button_raindrop"));
+	Point raindroploc = raindroppos->getPosition();
+	raindroppos->setVisible(false);
+	_raindropBtn = CSwitchButton::create();
+	_raindropBtn->setButtonInfo("raindrop.png", "raindrop.png", "raindrop.png", raindroploc);
+	this->addChild(_raindropBtn, 2);
+
+	//for spark
+	auto sparkpos = (Sprite *)(rootNode->getChildByName("Button_spark"));
+	Point sparkloc = sparkpos->getPosition();
+	sparkpos->setVisible(false);
+	_sparkBtn = CSwitchButton::create();
+	_sparkBtn->setButtonInfo("spark.png", "spark.png", "spark.png", sparkloc);
+	this->addChild(_sparkBtn, 2);
+
+
 	// Particle Control System
 	// 最好的方式是，以下的 Slider 根據這裡的設定值，顯示出正確的數值與位置
 	_ParticleControl.init(*this);
@@ -142,6 +199,12 @@ bool ParticleSystemScene::init()
 	BlueSlider->setMaxPercent(100); 	// 將 0 到 100 對應到 0 到 360 之間
 	_BlueBMValue = (cocos2d::ui::TextBMFont *)rootNode->getChildByName("BlueBMFont");
 	
+	// Slider of Wind
+	auto *WindSlider = (cocos2d::ui::Slider *)(rootNode->getChildByName("Slider_Wind"));
+	WindSlider->addEventListener(CC_CALLBACK_2(ParticleSystemScene::WindEvent, this));
+	WindSlider->setMaxPercent(100); 	// 將 0 到 100 對應到 0 到 360 之間
+	_WindBMValue = (cocos2d::ui::TextBMFont *)rootNode->getChildByName("WindBMFont");
+
 	// Slider of Type
 	auto *TypeSlider = (cocos2d::ui::Slider *)(rootNode->getChildByName("Slider_Type"));
 	TypeSlider->addEventListener(CC_CALLBACK_2(ParticleSystemScene::TypeEvent, this));
@@ -205,7 +268,46 @@ void  ParticleSystemScene::onTouchEnded(cocos2d::Touch *pTouch, cocos2d::Event *
 		}
 		_ParticleControl.setEmitter(_bEmitterOn); // 更新控制系統中的 Emitter 狀態
 	}
+	//bubble
+	if (_bubbleBtn->touchesBegan(touchLoc))
+	{
+		_ParticleControl.setNewPic("bubble.png", *this);
+	}
+	//circle
+	if (_circleBtn->touchesBegan(touchLoc))
+	{
+		_ParticleControl.setNewPic("circle.png", *this);
+	}
+	//cloud
+	if (_cloudBtn->touchesBegan(touchLoc))
+	{
+		_ParticleControl.setNewPic("cloud.png", *this);
+	}
+	//comet
+	if (_cometBtn->touchesBegan(touchLoc))
+	{
+		_ParticleControl.setNewPic("comet.png", *this);
+	}
+	//flare
+	if (_flareBtn->touchesBegan(touchLoc))
+	{
+		_ParticleControl.setNewPic("flare.png", *this);
+	}
+	//raindrop
+	if (_raindropBtn->touchesBegan(touchLoc))
+	{
+		_ParticleControl.setNewPic("raindrop.png", *this);
+	}
+	//spark
+	if (_sparkBtn->touchesBegan(touchLoc))
+	{
+		_ParticleControl.setNewPic("spark.png", *this);
+	}
+
+
 }
+
+
 
 void ParticleSystemScene::GravityEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type)
 {
@@ -266,7 +368,7 @@ void ParticleSystemScene::OpacityEvent(cocos2d::Ref* sender, cocos2d::ui::Slider
 		float fOpacity = percent * 2.55f;
 		// 透過 _GravityBMValue 顯示在畫面上
 		_OpacityBMValue->setString(StringUtils::format("%2.1f", fOpacity));
-		//_ParticleControl.setOpacity(fOpacity);
+		_ParticleControl.setOpacity(fOpacity);
 	}
 }
 
@@ -278,7 +380,7 @@ void ParticleSystemScene::ParticlesEvent(cocos2d::Ref* sender, cocos2d::ui::Slid
 		int iParticles = percent * 2;
 		// 透過 _GravityBMValue 顯示在畫面上
 		_ParticlesBMValue->setString(StringUtils::format("%d", iParticles));
-		//_ParticleControl.setOpacity(fOpacity);
+		_ParticleControl._iNumParticles = iParticles;
 	}
 }
 
@@ -299,10 +401,10 @@ void ParticleSystemScene::LifetimeEvent(cocos2d::Ref* sender, cocos2d::ui::Slide
 		Slider* slider = dynamic_cast<Slider*>(sender);
 		int percent = slider->getPercent(); // 捲動鈕目前的位置 0 ~ 100
 		// 將 0 到 100 對應到 0 到 255 之間
-		float fLifetime = percent / 25.0f;
+		float fLifetime = percent / 20.0f;
 		// 透過 _GravityBMValue 顯示在畫面上
 		_LifetimeBMValue->setString(StringUtils::format("%2.1f", fLifetime));
-		//_ParticleControl.setOpacity(fOpacity);
+		_ParticleControl._fLifeTime= fLifetime;
 	}
 }
 
@@ -314,7 +416,7 @@ void ParticleSystemScene::RedEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::Ev
 		float fRed = percent * 2.55f;
 		// 透過 _GravityBMValue 顯示在畫面上
 		_RedBMValue->setString(StringUtils::format("%2.1f", fRed));
-		//_ParticleControl.setOpacity(fOpacity);
+		_ParticleControl.setRed(fRed);
 	}
 }
 
@@ -326,7 +428,7 @@ void ParticleSystemScene::GreenEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::
 		float fGreen = percent * 2.55f;
 		// 透過 _GravityBMValue 顯示在畫面上
 		_GreenBMValue->setString(StringUtils::format("%2.1f", fGreen));
-		//_ParticleControl.setOpacity(fOpacity);
+		_ParticleControl.setGreen(fGreen);
 	}
 }
 
@@ -338,10 +440,21 @@ void ParticleSystemScene::BlueEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::E
 		float fBlue = percent * 2.55f;
 		// 透過 _GravityBMValue 顯示在畫面上
 		_BlueBMValue->setString(StringUtils::format("%2.1f", fBlue));
-		//_ParticleControl.setOpacity(fOpacity);
+		_ParticleControl.setBlue(fBlue);
 	}
 }
-
+//wind not done yet
+void ParticleSystemScene::WindEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type) {
+	if (type == Slider::EventType::ON_PERCENTAGE_CHANGED) {
+		Slider* slider = dynamic_cast<Slider*>(sender);
+		int percent = slider->getPercent(); // 捲動鈕目前的位置 0 ~ 100
+		// 將 0 到 100 對應到 0 到 255 之間
+		float fWind = (-50.0f + percent) / 50.0f;
+		// 透過 _GravityBMValue 顯示在畫面上
+		_WindBMValue->setString(StringUtils::format("%2.1f", fWind));
+		//_ParticleControl.setWind(fWind);
+	}
+}
 void ParticleSystemScene::TypeEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type)
 {
 	if (type == Slider::EventType::ON_PERCENTAGE_CHANGED)

@@ -21,6 +21,9 @@ private:
 	bool _bEmitterOn; // Emitter 是否顯示
 
 public:
+
+	cocos2d::Color3B _color;	// 分子的顏色(gonna use)
+
 	// Emitter 設定的相關參數
 	cocos2d::Point _emitterPt;// Emitter 的位置	
 	float    _fDir; // Emitter 的噴射方向，0 到 360度，逆時針方向為正
@@ -31,6 +34,11 @@ public:
 	float   _fLifeTime;	 // 分子的存活時間
 	float	_fSpin;		// 分子的旋轉量 degree/sec
 	float   _fGravity;
+	float _fOpacity;
+	float _fR;
+	float _fG;
+	float _fB;
+
 	float   _fElpasedTime;	// 經過多少時間，以秒為單位，作為成生分子的計算依據
 	cocos2d::Point _windDir;  // 風的方向，本範例沒有實作
 
@@ -49,7 +57,11 @@ public:
 	void setSpin(float fSpin);
 	void setOpacity(float fOpacity);
 	void setSpeed(float fSpeed);
-
+	void setRed(float fRed);
+	void setGreen(float fGreen);
+	void setBlue(float fBlue);
+	void setColor(float R, float G, float B);
+	void setNewPic(const char *pngName, cocos2d::Layer &inlayer);
 };
 
 #endif
