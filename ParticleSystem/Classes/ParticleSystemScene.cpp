@@ -464,7 +464,7 @@ void ParticleSystemScene::WindEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::E
 		float fWind = (-50.0f + percent) / 50.0f;
 		// 透過 _GravityBMValue 顯示在畫面上
 		_WindBMValue->setString(StringUtils::format("%2.1f", fWind));
-		//_ParticleControl.setWind(fWind);
+		_ParticleControl.setWind(fWind);
 	}
 }
 

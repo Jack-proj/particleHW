@@ -41,6 +41,7 @@ public:
 	float _fR;
 	float _fG;
 	float _fB;
+	float _fWind;
 
 	float   _fElpasedTime;	// 經過多少時間，以秒為單位，作為成生分子的計算依據
 	cocos2d::Point _windDir;  // 風的方向，本範例沒有實作
@@ -64,6 +65,7 @@ public:
 	void setRed(float fRed);
 	void setGreen(float fGreen);
 	void setBlue(float fBlue);
+	void setWind(float fWind);
 	void setNewPic(const char *pngName, cocos2d::Layer &inlayer);
 };
 
