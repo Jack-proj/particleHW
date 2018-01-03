@@ -98,12 +98,6 @@ void CParticleSystem::doStep(float dt)
 	
 
 	CParticle *get;
-	/*switch (_iType)
-	{
-	case CRAM:
-		get->getPosition();
-		break;
-	}*/
 	list <CParticle *>::iterator it;
 	if (_bEmitterOn) {
 		// 根據 Emitter 設定的相關參數，產生相對應的分子
@@ -492,7 +486,7 @@ void CParticleSystem::onTouchesMoved(const cocos2d::CCPoint &touchPoint)
 
 			get = _FreeList.front();
 			get->setBehavior(CRAM);
-			get->setPosition();
+			get->setPosition(_Old);
 			get->setColor(cocos2d::Color3B(0,255,0));
 			get->setOpacity(_fOpacity);
 			get->setDirection((touchPoint - Vec2(950, 100)) / 100);

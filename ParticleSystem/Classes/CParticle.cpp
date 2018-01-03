@@ -174,6 +174,7 @@ bool CParticle::doStep(float dt)
 			_Particle->setVisible(_bVisible);
 			_Particle->setColor(_color);
 			_Particle->setPosition(_Pos);
+			_OldPos = _Particle->getPosition();
 		}
 		else if (_fElapsedTime > _fLifeTime) {
 			_bVisible = false;
@@ -190,6 +191,7 @@ bool CParticle::doStep(float dt)
 			float tt = GRAVITY_Y(_fElapsedTime, dt, _fGravity);
 			_Pos.y += (_Direction.y * cost * _fVelocity + tt)* dt * PIXEL_PERM;
 			_Particle->setPosition(_Pos);
+			_OldPos = _Particle->getPosition();
 		}
 		break;
 	case EMITTER_DEFAULT:
