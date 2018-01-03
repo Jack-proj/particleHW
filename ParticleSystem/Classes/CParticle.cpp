@@ -194,6 +194,33 @@ bool CParticle::doStep(float dt)
 			_OldPos = _Particle->getPosition();
 		}
 		break;
+	case APIT:
+		if (!_bVisible && _fElapsedTime >= _fDelayTime) {
+			_fElapsedTime = _fElapsedTime - _fDelayTime; // 重新開始計時
+			_bVisible = true;
+			_Particle->setVisible(_bVisible);
+			_Particle->setColor(_color);
+			_Particle->setPosition(_Pos);
+			_OldPos = _Particle->getPosition();
+		}
+		else if (_fElapsedTime > _fLifeTime) {
+			_bVisible = false;
+			_Particle->setVisible(_bVisible);
+			return true; // 分子生命週期已經結束
+		}
+		else {
+			sint = sinf(M_PI*_fElapsedTime / _fLifeTime);
+			cost = cosf(M_PI_2*_fElapsedTime / _fLifeTime);
+			_Particle->setScale(2 - sint*1.0);
+			_Particle->setOpacity(_fOpacity * cost);
+			_Particle->setColor(Color3B(INTENSITY(_color.r*(1 + sint)), INTENSITY(_color.g*(1 + sint)), INTENSITY(_color.b*(1 + sint))));
+			_Pos.x += _Direction.x * cost * _fVelocity * dt * PIXEL_PERM;
+			float tt = GRAVITY_Y(_fElapsedTime, dt, _fGravity);
+			_Pos.y += (_Direction.y * cost * _fVelocity + tt)* dt * PIXEL_PERM;
+			_Particle->setPosition(_Pos);
+			_OldPos = _Particle->getPosition();
+		}
+		break;
 	case EMITTER_DEFAULT:
 		if (!_bVisible && _fElapsedTime >= _fDelayTime) {
 			_fElapsedTime = _fElapsedTime - _fDelayTime; // 重新開始計時
@@ -369,6 +396,23 @@ void CParticle::setBehavior(int iType)
 //		_fDelayTime = rand() % 100 / 1000.0f;
 		_fGravity = 0;
 		break;
+
+	case APIT:
+		_fVelocity = 15.0f; //+ rand() % 10 / 10.0f;
+		t = 2.0f * M_PI *(rand() % 1000) / 1000.0f;
+		_Direction.x = cosf(t);
+		_Direction.y = sinf(t);
+		_fLifeTime = 2.5f;//+LIFE_NOISE(0.01f);
+		_fIntensity = 1;
+		_fOpacity = 255;
+		_fSpin = 0;
+		_fSize = 3;
+		_color = Color3B(230, 70, 70);
+		_fElapsedTime = 1;
+		//		_fDelayTime = rand() % 100 / 1000.0f;
+		_fGravity = 0;
+		break;
+
 	case EMITTER_DEFAULT:
 		_fIntensity = 1;
 		_fOpacity = 255;

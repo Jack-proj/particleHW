@@ -47,6 +47,7 @@ private:
 	bool _bVisible;
 	
 public:
+	//cocos2d::Point  _OldPos;		// 分子前一個位置
 	cocos2d::Color3B _color;	// 分子的顏色
 	CParticle();
 	void setParticle(const char *pngName, cocos2d::Layer &inlayer);

@@ -4,6 +4,8 @@
 
 USING_NS_CC;
 
+using namespace CocosDenshion;
+
 CParticleSystem::CParticleSystem()
 {
 	_fGravity = 0;
@@ -19,6 +21,7 @@ void CParticleSystem::setEmitter(bool bEm)
 
 void CParticleSystem::init(cocos2d::Layer &inlayer)
 {
+	SimpleAudioEngine::getInstance()->preloadEffect("CRAM_MOVE.mp3");	// 預先載入音效檔
 	_iFree = NUMBER_PARTICLES;
 	_iInUsed = 0;
 	_pParticles = new CParticle[NUMBER_PARTICLES]; // 取得所需要的 particle 空間
@@ -333,6 +336,8 @@ CParticleSystem::~CParticleSystem()
 	if (_iFree != 0) _FreeList.clear();
 	delete[] _pParticles; // 釋放所有取得資源
 	SpriteFrameCache::getInstance()->removeSpriteFramesFromFile("particletexture.plist");
+
+	SimpleAudioEngine::getInstance()->unloadEffect("CRAM_MOVE.mp3");
 }
 
 void CParticleSystem::onTouchesBegan(const cocos2d::CCPoint &touchPoint)
@@ -424,6 +429,8 @@ void CParticleSystem::onTouchesBegan(const cocos2d::CCPoint &touchPoint)
 		else return;// 沒有分子, 所以就不提供
 		break;
 	case CRAM:
+		eid = SimpleAudioEngine::getInstance()->playEffect("CRAM_MOVE.mp3", true,0.0f,0.0f,0.0f);  // 播放音效檔
+		//SimpleAudioEngine::getInstance()->playBackgroundMusic("CRAM_BG.mp3", false);
 		break;
 	}
 }
@@ -472,8 +479,12 @@ void CParticleSystem::onTouchesMoved(const cocos2d::CCPoint &touchPoint)
 		else return;// 沒有分子, 所以就不提供
 		break;
 	case CRAM:
+		//SimpleAudioEngine::getInstance()->stopEffect(eid);
+		//eid = SimpleAudioEngine::getInstance()->playEffect("CRAM_MOVE.mp3", false);  // 播放音效檔
 		// 從 _FreeList 取得一個分子給放到 _InUsed
 		if (_iFree != 0) {
+
+			
 
 			get = _FreeList.front();
 			get->setBehavior(CRAM);
@@ -486,17 +497,60 @@ void CParticleSystem::onTouchesMoved(const cocos2d::CCPoint &touchPoint)
 
 			get = _FreeList.front();
 			get->setBehavior(CRAM);
-			get->setPosition(_Old);
+			get->setPosition(Vec2(950, 100));
 			get->setColor(cocos2d::Color3B(0,255,0));
 			get->setOpacity(_fOpacity);
-			get->setDirection((touchPoint - Vec2(950, 100)) / 100);
-			//get->setDirection((touchPoint - Vec2(950, 100)) / 10);
+			//get->setDirection((touchPoint - Vec2(950, 300)) / 90);
+			get->setDirection((touchPoint - Vec2(950, 100)) / 25);
 			get->setGravity(_fGravity);
 			_FreeList.pop_front();
 			_InUsedList.push_front(get);
 			_iFree--; _iInUsed++;
+
+			
 		}
 		else return;// 沒有分子, 所以就不提供
+		break;
+
+	case APIT:
+		//SimpleAudioEngine::getInstance()->stopEffect(eid);
+		//eid = SimpleAudioEngine::getInstance()->playEffect("CRAM_MOVE.mp3", false);  // 播放音效檔
+		// 從 _FreeList 取得一個分子給放到 _InUsed
+		if (_iFree != 0) {
+
+
+
+			get = _FreeList.front();
+			get->setBehavior(APIT);
+			get->setPosition(Vec2(950, 100));
+			get->setDirection((touchPoint - Vec2(950, 100)) / 100);
+			get->setGravity(_fGravity);
+			_FreeList.pop_front();
+			_InUsedList.push_front(get);
+			_iFree--; _iInUsed++;
+
+			get = _FreeList.front();
+			get->setBehavior(APIT);
+			get->setPosition(Vec2(950, 600));
+			get->setColor(cocos2d::Color3B(0, 255, 0));
+			get->setOpacity(_fOpacity);
+			get->setDirection((touchPoint - Vec2(950, 600)) / 90);
+			//get->setDirection((touchPoint - Vec2(950, 100)) / 25);
+			get->setGravity(_fGravity);
+			_FreeList.pop_front();
+			_InUsedList.push_front(get);
+			_iFree--; _iInUsed++;
+
+
+		}
+		else return;// 沒有分子, 所以就不提供
+		break;
+	}
+}
+void CParticleSystem::onTouchesEnd(const cocos2d::CCPoint &touchPoint) {
+	switch (_iType) {
+	case CRAM:
+		SimpleAudioEngine::getInstance()->stopEffect(eid);
 		break;
 	}
 }

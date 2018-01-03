@@ -258,6 +258,10 @@ void  ParticleSystemScene::onTouchMoved(cocos2d::Touch *pTouch, cocos2d::Event *
 
 void  ParticleSystemScene::onTouchEnded(cocos2d::Touch *pTouch, cocos2d::Event *pEvent) //Ä²¸Iµ²§ô¨Æ¥ó 
 {
+	unsigned int eid;
+	eid = SimpleAudioEngine::getInstance()->playEffect("CRAM_MOVE.mp3", true);
+	SimpleAudioEngine::getInstance()->stopEffect(eid);
+
 	Point touchLoc = pTouch->getLocation();
 	if (_bEmitterOn) {
 		if( _EmitterSprite->touchesEnded(touchLoc) ) 

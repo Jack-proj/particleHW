@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "CParticle.h"
+#include "SimpleAudioEngine.h"
 #include <list>
 
 using namespace std;
@@ -22,8 +23,9 @@ private:
 	bool _bEmitterOn; // Emitter 是否顯示
 	cocos2d::Point _pos;
 public:
-
 	cocos2d::Color3B _color;	// 分子的顏色(gonna use)
+
+	unsigned int eid;
 
 	// Emitter 設定的相關參數
 	cocos2d::Point _emitterPt;// Emitter 的位置	
@@ -54,7 +56,7 @@ public:
  //   void onTouchesEnded(const cocos2d::CCPoint &touchPoint);
     void onTouchesBegan(const cocos2d::CCPoint &touchPoint);
     void onTouchesMoved(const cocos2d::CCPoint &touchPoint);
-	
+	void onTouchesEnd(const cocos2d::CCPoint &touchPoint);
 	void setGravity(float fGravity);
 	void setSpin(float fSpin);
 	void setOpacity(float fOpacity);
