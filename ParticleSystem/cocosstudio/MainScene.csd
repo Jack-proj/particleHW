@@ -602,6 +602,42 @@
             <PreSize X="0.0117" Y="0.0431" />
             <LabelBMFontFile_CNB Type="Normal" Path="couriernew32.fnt" Plist="" />
           </AbstractNodeData>
+          <AbstractNodeData Name="Slider_ET" ActionTag="-1804867778" Tag="52" IconVisible="False" LeftMargin="27.9089" RightMargin="1002.0911" TopMargin="613.3548" BottomMargin="93.6452" TouchEnable="True" ctype="SliderObjectData">
+            <Size X="250.0000" Y="13.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="152.9089" Y="100.1452" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1195" Y="0.1391" />
+            <PreSize X="0.1953" Y="0.0181" />
+            <BackGroundData Type="PlistSubImage" Path="sliderTrack.png" Plist="particletexture.plist" />
+            <ProgressBarData Type="PlistSubImage" Path="sliderProgress.png" Plist="particletexture.plist" />
+            <BallNormalData Type="PlistSubImage" Path="sliderballnormal.png" Plist="particletexture.plist" />
+            <BallPressedData Type="PlistSubImage" Path="sliderballpressed.png" Plist="particletexture.plist" />
+            <BallDisabledData Type="PlistSubImage" Path="sliderballnormal.png" Plist="particletexture.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Text_9" ActionTag="1151065921" Tag="53" IconVisible="False" LeftMargin="20.5212" RightMargin="1135.4788" TopMargin="567.1520" BottomMargin="129.8479" FontSize="20" LabelText="Emmiter Type" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="124.0000" Y="23.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="82.5212" Y="141.3479" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.0645" Y="0.1963" />
+            <PreSize X="0.0969" Y="0.0319" />
+            <FontResource Type="Normal" Path="arial.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="ETBMFont" ActionTag="801286218" Tag="54" IconVisible="False" LeftMargin="220.9222" RightMargin="1010.0778" TopMargin="562.3005" BottomMargin="126.6995" LabelText="100" ctype="TextBMFontObjectData">
+            <Size X="49.0000" Y="31.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="245.4222" Y="142.1995" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1917" Y="0.1975" />
+            <PreSize X="0.0383" Y="0.0431" />
+            <LabelBMFontFile_CNB Type="Normal" Path="couriernew32.fnt" Plist="" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

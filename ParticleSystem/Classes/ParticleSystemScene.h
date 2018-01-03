@@ -30,6 +30,9 @@ private:
 	// 選擇不同的分子型態，用在 Emitter 沒有開啟的狀態
 	cocos2d::ui::TextBMFont *_TypeBMValue;
 
+	//不同的Emmiter效果
+	cocos2d::ui::TextBMFont *_ETBMValue;
+
 	// For Emitter
 	CDraggableSprite *_EmitterSprite;
 	bool _bEmitterOn;
@@ -77,6 +80,7 @@ public:
 	void WindEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type);
 
 	void TypeEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type);
+	void ETEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type);
 
     // implement the "static create()" method manually
     CREATE_FUNC(ParticleSystemScene);

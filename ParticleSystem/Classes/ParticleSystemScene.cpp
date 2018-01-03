@@ -211,6 +211,13 @@ bool ParticleSystemScene::init()
 	TypeSlider->setMaxPercent(100); 	// 將 0 到 100 對應到 0 到 360 之間
 	_TypeBMValue = (cocos2d::ui::TextBMFont *)rootNode->getChildByName("TypeBMFont");
 
+	//Slider of EmmiterType
+	auto *ETSlider = (cocos2d::ui::Slider *)(rootNode->getChildByName("Slider_ET"));
+	ETSlider->addEventListener(CC_CALLBACK_2(ParticleSystemScene::ETEvent, this));
+	ETSlider->setMaxPercent(100); 	// 將 0 到 100 對應到 100 到 110 之間
+	_ETBMValue = (cocos2d::ui::TextBMFont *)rootNode->getChildByName("ETBMFont");
+
+
 
 	_listener1 = EventListenerTouchOneByOne::create();	//創建一個一對一的事件聆聽器
 	_listener1->onTouchBegan = CC_CALLBACK_2(ParticleSystemScene::onTouchBegan, this);		//加入觸碰開始事件
@@ -443,6 +450,7 @@ void ParticleSystemScene::BlueEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::E
 		_ParticleControl.setBlue(fBlue);
 	}
 }
+
 //wind not done yet
 void ParticleSystemScene::WindEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type) {
 	if (type == Slider::EventType::ON_PERCENTAGE_CHANGED) {
@@ -455,6 +463,7 @@ void ParticleSystemScene::WindEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::E
 		//_ParticleControl.setWind(fWind);
 	}
 }
+
 void ParticleSystemScene::TypeEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type)
 {
 	if (type == Slider::EventType::ON_PERCENTAGE_CHANGED)
@@ -462,8 +471,21 @@ void ParticleSystemScene::TypeEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::E
 		Slider* slider = dynamic_cast<Slider*>(sender);
 		int percent = slider->getPercent();
 		int maxPercent = slider->getMaxPercent();
-		int iType = percent/20; // 0 到 360 之間
+		int iType = percent/10; // 0 到 360 之間
 		_TypeBMValue->setString(StringUtils::format("%2d", iType));
 		_ParticleControl.setType(iType);
+	}
+}
+
+void ParticleSystemScene::ETEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type)
+{
+	if (type == Slider::EventType::ON_PERCENTAGE_CHANGED)
+	{
+		Slider* slider = dynamic_cast<Slider*>(sender);
+		int percent = slider->getPercent();
+		int maxPercent = slider->getMaxPercent();
+		int iET = (percent / 10)+100; // 0 到 360 之間
+		_ETBMValue->setString(StringUtils::format("%2d", iET));
+		_ParticleControl.setEType(iET);
 	}
 }

@@ -17,9 +17,10 @@ private:
 	int _iFree;	// ノ  Particle 计
 	int _iInUsed;  // タㄏノ Particle 计
 	int _iType;  // ヘ玡北だ笲笆家Α琌贺篈
+	int _iEType = 100;//ヘ玡琌贺Emitter篈
 
 	bool _bEmitterOn; // Emitter 琌陪ボ
-
+	cocos2d::Point _pos;
 public:
 
 	cocos2d::Color3B _color;	// だ肅︹(gonna use)
@@ -48,6 +49,7 @@ public:
 	void doStep(float dt);
 	void setEmitter(bool bEm);
 	void setType(int type) { _iType = type; }
+	void setEType(int type) { _iEType = type; }
 
  //   void onTouchesEnded(const cocos2d::CCPoint &touchPoint);
     void onTouchesBegan(const cocos2d::CCPoint &touchPoint);
@@ -60,7 +62,6 @@ public:
 	void setRed(float fRed);
 	void setGreen(float fGreen);
 	void setBlue(float fBlue);
-	void setColor(float R, float G, float B);
 	void setNewPic(const char *pngName, cocos2d::Layer &inlayer);
 };
 

@@ -30,16 +30,19 @@ void CParticleSystem::init(cocos2d::Layer &inlayer)
 	}
 }
 
-void CParticleSystem::doStep(float dt)
+
+//下面是原本的dostep
+/*void CParticleSystem::doStep(float dt)
 {
 	CParticle *get;
 
 	list <CParticle *>::iterator it;	
-	if (_bEmitterOn) { // 根據 Emitter 設定的相關參數，產生相對應的分子
+	if (_bEmitterOn) { 
+		// 根據 Emitter 設定的相關參數，產生相對應的分子
 		// 先計算在累加
 		int n = (int)(_fElpasedTime * _iNumParticles); // 到目前為止應該產生的分子個數
 		if (n > _iGenParticles) {  // 產生的分子個數不足，產生到 n 個分子
-			for (int i = 0; i < n - _iGenParticles; i++) {
+			for (int i = 0; i < n - _iGenParticles; i++) {	
 				// 根據 Emitter 的相關參數，設定所產生分子的參數
 				if (_iFree != 0) {
 					get = _FreeList.front();
@@ -54,8 +57,9 @@ void CParticleSystem::doStep(float dt)
 					get->_color = _color;
 					// 根據 _fSpread 與 _vDir 產生方向
 					float t = (rand() % 1001) / 1000.0f; // 產生介於 0 到 1 間的數
-					t = _fSpread - t * _fSpread * 2; //  產生的角度，轉成弧度
-					t = ( _fDir + t )* M_PI / 180.0f;
+					t = _fSpread - t * _fSpread * 2;
+					//  產生的角度，轉成弧度
+					t = (_fDir + t)* M_PI / 180.0f;
 					Vec2 vdir(cosf(t), sinf(t));
 					get->setDirection(vdir);
 					_FreeList.pop_front();
@@ -72,7 +76,6 @@ void CParticleSystem::doStep(float dt)
 		}
 		_fElpasedTime += dt;
 	}
-
 	if (_iInUsed != 0) { // 有分子需要更新時
 		for (it = _InUsedList.begin(); it != _InUsedList.end(); ) {
 			if ((*it)->doStep(dt))
@@ -86,6 +89,183 @@ void CParticleSystem::doStep(float dt)
 		}
 	}
 	
+}
+*/
+
+//dostep改二
+void CParticleSystem::doStep(float dt)
+{
+	
+
+	CParticle *get;
+	/*switch (_iType)
+	{
+	case CRAM:
+		get->getPosition();
+		break;
+	}*/
+	list <CParticle *>::iterator it;
+	if (_bEmitterOn) {
+		// 根據 Emitter 設定的相關參數，產生相對應的分子
+		// 先計算在累加
+		int n = (int)(_fElpasedTime * _iNumParticles); // 到目前為止應該產生的分子個數
+		if (n > _iGenParticles) {  // 產生的分子個數不足，產生到 n 個分子
+			for (int i = 0; i < n - _iGenParticles; i++) {
+				
+				//switch 起始
+				switch (_iEType)
+				{
+
+				case EMITTER_DEFAULT:
+					if (_iFree != 0) {
+						get = _FreeList.front();
+						get->setBehavior(EMITTER_DEFAULT);
+						get->setVelocity(_fVelocity);
+						get->setLifetime(_fLifeTime);
+						get->setOpacity(_fOpacity);
+						get->setGravity(_fGravity);
+						get->setPosition(_emitterPt);
+						get->setSize(0.125f);
+						get->setSpin(_fSpin);
+						get->_color = _color;
+						// 根據 _fSpread 與 _vDir 產生方向
+						float t = (rand() % 1001) / 1000.0f; // 產生介於 0 到 1 間的數
+						t = _fSpread - t * _fSpread * 2;
+						//  產生的角度，轉成弧度
+						t = (_fDir + t)* M_PI / 180.0f;
+						Vec2 vdir(cosf(t), sinf(t));
+						get->setDirection(vdir);
+						_FreeList.pop_front();
+						_InUsedList.push_front(get);
+						_iFree--; _iInUsed++;
+					}
+					break;
+
+				case EMITTER_FIREWORKS:
+					if (_iFree != 0) {
+						get = _FreeList.front();
+						get->setBehavior(EMITTER_FIREWORKS);
+						get->setVelocity(_fVelocity);
+						get->setLifetime(_fLifeTime);
+						get->setOpacity(_fOpacity);
+						get->setGravity(_fGravity);
+						get->setPosition(_emitterPt);
+						get->setSize(0.125f);
+						get->setSpin(_fSpin);
+						//get->_color = _color;
+						// 根據 _fSpread 與 _vDir 產生方向
+						float t = (rand() % 1001) / 1000.0f; // 產生介於 0 到 1 間的數
+						t = _fSpread - t * _fSpread * 2;
+						//  產生的角度，轉成弧度
+						t = (_fDir + t)* M_PI / 180.0f;
+						Vec2 vdir(cosf(t), sinf(t));
+						get->setDirection(vdir);
+						_FreeList.pop_front();
+						_InUsedList.push_front(get);
+						_iFree--; _iInUsed++;
+					}
+					break;
+
+				case EMITTER_TRACK:
+					if (_iFree != 0) {
+						get = _FreeList.front();
+						get->setBehavior(EMITTER_DEFAULT);
+						get->setVelocity(_fVelocity);
+						get->setLifetime(_fLifeTime);
+						get->setOpacity(_fOpacity);
+						get->setGravity(_fGravity);
+						get->setPosition(_emitterPt);
+						get->setSize(0.125f);
+						get->setSpin(_fSpin);
+						get->_color = _color;
+						// 根據 _fSpread 與 _vDir 產生方向
+						float t = (rand() % 1001) / 1000.0f; // 產生介於 0 到 1 間的數
+						t = _fSpread - t * _fSpread * 2;
+						//  產生的角度，轉成弧度
+						t = (_fDir + t)* M_PI / 180.0f;
+						Vec2 vdir(cosf(t), sinf(t));
+						get->setDirection(vdir);
+						_FreeList.pop_front();
+						_InUsedList.push_front(get);
+						_iFree--; _iInUsed++;
+					}
+					break;
+
+				case EMITTER_DISCO:
+					if (_iFree != 0) {
+						get = _FreeList.front();
+						get->setBehavior(EMITTER_DEFAULT);
+						get->setVelocity(_fVelocity);
+						get->setLifetime(_fLifeTime);
+						get->setOpacity(_fOpacity);
+						get->setGravity(_fGravity);
+						get->setPosition(_emitterPt);
+						get->setSize(0.125f);
+						get->setSpin(_fSpin);
+						get->_color = _color;
+						// 根據 _fSpread 與 _vDir 產生方向
+						float t = (rand() % 1001) / 1000.0f; // 產生介於 0 到 1 間的數
+						t = _fSpread - t * _fSpread * 2;
+						//  產生的角度，轉成弧度
+						t = (_fDir + t)* M_PI / 180.0f;
+						Vec2 vdir(cosf(t), sinf(t));
+						get->setDirection(vdir);
+						_FreeList.pop_front();
+						_InUsedList.push_front(get);
+						_iFree--; _iInUsed++;
+					}
+					break;
+
+				case EMMITER_SONAR:
+					if (_iFree != 0) {
+						get = _FreeList.front();
+						get->setBehavior(EMITTER_DEFAULT);
+						get->setVelocity(_fVelocity);
+						get->setLifetime(_fLifeTime);
+						get->setOpacity(_fOpacity);
+						get->setGravity(_fGravity);
+						get->setPosition(_emitterPt);
+						get->setSize(0.125f);
+						get->setSpin(_fSpin);
+						get->_color = _color;
+						// 根據 _fSpread 與 _vDir 產生方向
+						float t = (rand() % 1001) / 1000.0f; // 產生介於 0 到 1 間的數
+						t = _fSpread - t * _fSpread * 2;
+						//  產生的角度，轉成弧度
+						t = (_fDir + t)* M_PI / 180.0f;
+						Vec2 vdir(cosf(t), sinf(t));
+						get->setDirection(vdir);
+						_FreeList.pop_front();
+						_InUsedList.push_front(get);
+						_iFree--; _iInUsed++;
+					}
+					break;
+				}
+				//switch 終了
+
+			}
+			_iGenParticles = n; // 目前已經產生 n 個分子		
+		}
+		if (_fElpasedTime >= 1.0f) {
+			_fElpasedTime -= 1.0f;
+			if (_iGenParticles >= _iNumParticles) _iGenParticles -= _iNumParticles;
+			else _iGenParticles = 0;
+		}
+		_fElpasedTime += dt;
+	}
+	if (_iInUsed != 0) { // 有分子需要更新時
+		for (it = _InUsedList.begin(); it != _InUsedList.end(); ) {
+			if ((*it)->doStep(dt))
+			{ // 分子生命週期已經到達
+			  // 將目前這一個節點的內容放回 _FreeList
+				_FreeList.push_front((*it));
+				it = _InUsedList.erase(it); // 移除目前這一個, 
+				_iFree++; _iInUsed--;
+			}
+			else it++;
+		}
+	}
+
 }
 
 void CParticleSystem::setGravity(float fGravity)
@@ -249,6 +429,8 @@ void CParticleSystem::onTouchesBegan(const cocos2d::CCPoint &touchPoint)
 		}
 		else return;// 沒有分子, 所以就不提供
 		break;
+	case CRAM:
+		break;
 	}
 }
 
@@ -288,6 +470,33 @@ void CParticleSystem::onTouchesMoved(const cocos2d::CCPoint &touchPoint)
 			get = _FreeList.front();
 			get->setBehavior(FREE_FLY);
 			get->setPosition(touchPoint);
+			get->setGravity(_fGravity);
+			_FreeList.pop_front();
+			_InUsedList.push_front(get);
+			_iFree--; _iInUsed++;
+		}
+		else return;// 沒有分子, 所以就不提供
+		break;
+	case CRAM:
+		// 從 _FreeList 取得一個分子給放到 _InUsed
+		if (_iFree != 0) {
+
+			get = _FreeList.front();
+			get->setBehavior(CRAM);
+			get->setPosition(Vec2(950, 100));
+			get->setDirection((touchPoint- Vec2(950, 100))/100);
+			get->setGravity(_fGravity);
+			_FreeList.pop_front();
+			_InUsedList.push_front(get);
+			_iFree--; _iInUsed++;
+
+			get = _FreeList.front();
+			get->setBehavior(CRAM);
+			get->setPosition();
+			get->setColor(cocos2d::Color3B(0,255,0));
+			get->setOpacity(_fOpacity);
+			get->setDirection((touchPoint - Vec2(950, 100)) / 100);
+			//get->setDirection((touchPoint - Vec2(950, 100)) / 10);
 			get->setGravity(_fGravity);
 			_FreeList.pop_front();
 			_InUsedList.push_front(get);

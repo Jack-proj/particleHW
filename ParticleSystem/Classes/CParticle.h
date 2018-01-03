@@ -8,8 +8,18 @@
 #define HEARTSHAPE 4			// ¼Q®g¥X¤ß«¬ªº·Ï¤õ
 #define BUTTERFLYSHAPE	5		// ¼Q®g¥X½¹½º¥~«¬ªº·Ï¤õ
 
-#define EMITTER_DEFAULT 99
-#define EMITTER_FIREWORKS 100 //·Ï¤õ
+#define CRAM 6 //¤è°}§Ö¯¥
+#define HEFT 7 //°ªÃz¯}¤ù¦²¥ú¼u
+#define AP_WITH_T 8 //¬ï¥Ò¼u/¦²¥ú¼u
+#define MAINGUN 9 //¥D¯¥
+#define APIT 10 //¬ï¥Ò¿U¿N¦²¥ú¼u
+
+#define EMITTER_DEFAULT 100
+#define EMITTER_FIREWORKS 101//·Ï¤õ
+#define EMITTER_TRACK 102//­y¸ñ
+#define EMITTER_DISCO 103//­}´µ¥i¿O
+#define EMMITER_SONAR 104//Án¯Ç
+
 #include "cocos2d.h"
 
 class CParticle
