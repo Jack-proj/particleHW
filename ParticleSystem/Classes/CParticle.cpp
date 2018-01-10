@@ -381,6 +381,7 @@ void CParticle::setBehavior(int iType)
 		_fDelayTime = rand() % 100 / 1000.0f;
 		_fGravity = 0;
 		break;
+
 	case CRAM:
 		_fVelocity = 15.0f ; //+ rand() % 10 / 10.0f;
 		t = 2.0f * M_PI *(rand() % 1000) / 1000.0f;
