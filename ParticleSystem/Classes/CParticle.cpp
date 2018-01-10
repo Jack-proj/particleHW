@@ -473,11 +473,6 @@ void CParticle::setGravity(const float fGravity)
 	_fGravity = fGravity;
 }
 
-void  CParticle::setGravity(const float fGravity)
-{
-
-}
-
 void CParticle::setSpin(float fSpin)
 {
 	_fSpin = fSpin;

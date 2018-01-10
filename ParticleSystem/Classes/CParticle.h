@@ -61,7 +61,6 @@ public:
 	// 設定分子產生的起始行為模式
 	void setVisible();
 	void setGravity(const float fGravity);
-	void setWind(const float fWind);
 	void setVelocity(const float v) { _fVelocity = v; }
 	void setLifetime(const float lt);
 	void setDirection(const cocos2d::Point pt) { _Direction = pt; }

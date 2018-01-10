@@ -314,17 +314,6 @@ void CParticleSystem::setBlue(float fBlue)
 	_color.b = fBlue;
 }
 
-void CParticleSystem::setWind(float fWind)
-{
-	_fWind = fWind;
-	list <CParticle *>::iterator it;
-	if (_iInUsed != 0) { // 有分子需要更新時
-		for (it = _InUsedList.begin(); it != _InUsedList.end(); it++) {
-			(*it)->setWind(_fWind);
-		}
-	}
-}
-
 void CParticleSystem::setNewPic(const char *pngName, cocos2d::Layer &inlayer)
 {
 	const char * _pngName = pngName;
