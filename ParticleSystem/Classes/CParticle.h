@@ -37,6 +37,8 @@ private:
 	float _fSpin;		// 分子的旋轉量
 	float _fSize;		// 分子的大小
 	float _fGravity;	// 分子的大小
+
+	float _fWind;
 	//cocos2d::Color3B _color;	// 分子的顏色
 	// 時間
 	float _fElapsedTime; // 分子從顯示到目前為止的時間
@@ -67,6 +69,7 @@ public:
 	void setSize(float s) { _fSize = s; _Particle->setScale(_fSize); }
 	void setSpin(float fSpin);
 	void setOpacity(const float fOpacity);
+	void setWind(float fWind);
 };
 
 #endif

@@ -26,6 +26,7 @@ USING_NS_CC;
 CParticle::CParticle()
 {
 	_fGravity = 0;
+	_fWind = 0;
 }
 
 
@@ -60,6 +61,7 @@ bool CParticle::doStep(float dt)
 			_Particle->setColor(Color3B(INTENSITY((_color.r + sint * 64)*(1 + sint)), 
 				INTENSITY((_color.g - cost * 32)*(1 + sint)), INTENSITY((_color.b - sint * 64)*(1 + sint))));
 			float tt = GRAVITY_Y(_fElapsedTime, dt, _fGravity);
+			_Pos.x += (_Direction.x + _fWind*sint);
 			_Pos.y += (_Direction.y  * _fVelocity + tt) * dt * PIXEL_PERM;
 			_Particle->setPosition(_Pos);
 		}
@@ -83,7 +85,7 @@ bool CParticle::doStep(float dt)
 			_Particle->setScale(1 + sint * 1.25f);
 			_Particle->setOpacity(_fOpacity * cost);
 			_Particle->setColor(_color);
-			_Pos.x += _Direction.x * _fVelocity * dt * PIXEL_PERM;
+			_Pos.x +=( _Direction.x +_fWind*sint ) * _fVelocity * dt * PIXEL_PERM;
 			float tt = GRAVITY_Y(_fElapsedTime, dt, _fGravity);
 			_Pos.y += (_Direction.y * _fVelocity + tt)* dt * PIXEL_PERM;
 			_Particle->setPosition(_Pos);
@@ -108,7 +110,7 @@ bool CParticle::doStep(float dt)
 			_Particle->setScale(1 + sint * 2);
 			_Particle->setOpacity(_fOpacity * cost);
 			_Particle->setColor(_color);
-			_Pos.x += _Direction.x * _fVelocity * dt * PIXEL_PERM;
+			_Pos.x += (_Direction.x + _fWind*sint)  * _fVelocity * dt * PIXEL_PERM;
 			float tt = GRAVITY_Y(_fElapsedTime, dt,_fGravity);
 			_Pos.y += (_Direction.y * _fVelocity + tt)* dt * PIXEL_PERM;
 			//_Pos.y += _Direction.y * _fVelocity * dt;
@@ -134,7 +136,7 @@ bool CParticle::doStep(float dt)
 			_Particle->setScale(1.25 + sint*2.0);
 			_Particle->setOpacity(_fOpacity * cost);
 			_Particle->setColor(Color3B(INTENSITY(_color.r*(1 + sint)), INTENSITY(_color.g*(1 + sint)), INTENSITY(_color.b*(1 + sint))));
-			_Pos.x += _Direction.x * cost * _fVelocity * dt * PIXEL_PERM;
+			_Pos.x += (_Direction.x + _fWind*sint)  * cost * _fVelocity * dt * PIXEL_PERM;
 			float tt = GRAVITY_Y(_fElapsedTime, dt, _fGravity);
 			_Pos.y += (_Direction.y * cost * _fVelocity + tt)* dt * PIXEL_PERM;
 			_Particle->setPosition(_Pos);
@@ -161,7 +163,7 @@ bool CParticle::doStep(float dt)
 			_Particle->setScale(1.25 + (1 - cost)*2.0);
 			_Particle->setOpacity(_fOpacity * cost);
 			_Particle->setColor(_color);
-			_Pos.x += _Direction.x * cost * _fVelocity * dt * PIXEL_PERM;
+			_Pos.x += (_Direction.x + _fWind*sint)  * cost * _fVelocity * dt * PIXEL_PERM;
 			float tt = GRAVITY_Y(_fElapsedTime, dt, _fGravity);
 			_Pos.y += (_Direction.y * cost * _fVelocity + tt)* dt * PIXEL_PERM;
 			_Particle->setPosition(_Pos);
@@ -187,7 +189,7 @@ bool CParticle::doStep(float dt)
 			_Particle->setScale(2 - sint*1.0);
 			_Particle->setOpacity(_fOpacity * cost);
 			_Particle->setColor(Color3B(INTENSITY(_color.r*(1 + sint)), INTENSITY(_color.g*(1 + sint)), INTENSITY(_color.b*(1 + sint))));
-			_Pos.x += _Direction.x * cost * _fVelocity * dt * PIXEL_PERM;
+			_Pos.x += (_Direction.x + _fWind*sint) * cost * _fVelocity * dt * PIXEL_PERM;
 			float tt = GRAVITY_Y(_fElapsedTime, dt, _fGravity);
 			_Pos.y += (_Direction.y * cost * _fVelocity + tt)* dt * PIXEL_PERM;
 			_Particle->setPosition(_Pos);
@@ -214,7 +216,7 @@ bool CParticle::doStep(float dt)
 			_Particle->setScale(2 - sint*1.0);
 			_Particle->setOpacity(_fOpacity * cost);
 			_Particle->setColor(Color3B(INTENSITY(_color.r*(1 + sint)), INTENSITY(_color.g*(1 + sint)), INTENSITY(_color.b*(1 + sint))));
-			_Pos.x += _Direction.x * cost * _fVelocity * dt * PIXEL_PERM;
+			_Pos.x += (_Direction.x + _fWind*sint) * cost * _fVelocity * dt * PIXEL_PERM;
 			float tt = GRAVITY_Y(_fElapsedTime, dt, _fGravity);
 			_Pos.y += (_Direction.y * cost * _fVelocity + tt)* dt * PIXEL_PERM;
 			_Particle->setPosition(_Pos);
@@ -240,8 +242,7 @@ bool CParticle::doStep(float dt)
 			_Particle->setScale(_fSize + sint * 1.5f );
 			_Particle->setOpacity(_fOpacity * cost);
 			_Particle->setColor(Color3B(INTENSITY(_color.r*(1 + sint)), INTENSITY(_color.g*(1 + sint)), INTENSITY(_color.b*(1 + sint))));
-//			_Particle->setColor(_color);
-			_Pos.x += _Direction.x * _fVelocity * dt * PIXEL_PERM;
+			_Pos.x += (_Direction.x +_fWind*sint) * _fVelocity * dt * PIXEL_PERM;
 			float tt = GRAVITY_Y(_fElapsedTime, dt, _fGravity);
 			_Pos.y += (_Direction.y * _fVelocity + tt)* dt * PIXEL_PERM;
 			_Particle->setPosition(_Pos);
@@ -268,7 +269,7 @@ bool CParticle::doStep(float dt)
 			_Particle->setOpacity(_fOpacity * cost);
 			_Particle->setColor(Color3B(INTENSITY(_color.r*(1 + sint)), INTENSITY(_color.g*(1 + sint)), INTENSITY(_color.b*(1 + sint))));
 			//			_Particle->setColor(_color);
-			_Pos.x += _Direction.x * _fVelocity * dt * PIXEL_PERM;
+			_Pos.x += (_Direction.x + _fWind*sint) * _fVelocity * dt * PIXEL_PERM;
 			float tt = GRAVITY_Y(_fElapsedTime, dt, _fGravity);
 			_Pos.y += (_Direction.y * _fVelocity + tt)* dt * PIXEL_PERM;
 			_Particle->setPosition(_Pos);
@@ -481,5 +482,10 @@ void CParticle::setSpin(float fSpin)
 void CParticle::setOpacity(const float fOpacity)
 {
 	_fOpacity = fOpacity;
+}
+
+void CParticle::setWind(float fWind)
+{
+	_fWind = fWind;
 }
 

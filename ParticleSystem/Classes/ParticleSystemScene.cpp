@@ -455,16 +455,15 @@ void ParticleSystemScene::BlueEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::E
 	}
 }
 
-//wind not done yet
 void ParticleSystemScene::WindEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type) {
 	if (type == Slider::EventType::ON_PERCENTAGE_CHANGED) {
 		Slider* slider = dynamic_cast<Slider*>(sender);
 		int percent = slider->getPercent(); // 捲動鈕目前的位置 0 ~ 100
 		// 將 0 到 100 對應到 0 到 255 之間
-		float fWind = (-50.0f + percent) / 50.0f;
+		float fWind = (-50.0f + percent) / 5.0f;
 		// 透過 _GravityBMValue 顯示在畫面上
 		_WindBMValue->setString(StringUtils::format("%2.1f", fWind));
-		//_ParticleControl.setWind(fWind);
+		_ParticleControl.setWind(fWind);
 	}
 }
 
