@@ -34,7 +34,6 @@ void CParticleSystem::init(cocos2d::Layer &inlayer)
 	}
 }
 
-
 //dostep改二
 void CParticleSystem::doStep(float dt)
 {
@@ -389,6 +388,49 @@ void CParticleSystem::onTouchesBegan(const cocos2d::CCPoint &touchPoint)
 		eid = SimpleAudioEngine::getInstance()->playEffect("CRAM_MOVE.mp3", true,0.0f,0.0f,0.0f);  // 播放音效檔
 		//SimpleAudioEngine::getInstance()->playBackgroundMusic("CRAM_BG.mp3", false);
 		break;
+	case MAINGUN:
+		if (_iFree > 20) {
+				get = _FreeList.front();
+				get->setBehavior(MAINGUN);
+				get->setPosition(Vec2(675, 132));
+				get->setGravity(_fGravity);
+				get->setWind(_fWind);
+				_FreeList.pop_front();
+				_InUsedList.push_front(get);
+				_iFree--; _iInUsed++;
+				for (int i = 0;i < 19;i++) {
+					get = _FreeList.front();
+					get->setBehavior(SMOKE);
+					//get->pic("cloud.png");
+					get->setPosition(Vec2(675, 132));
+					get->setGravity(_fGravity);
+					get->setWind(_fWind);
+					_FreeList.pop_front();
+					_InUsedList.push_front(get);
+					_iFree--; _iInUsed++;
+				}
+		}
+		break;
+	}
+
+	if (_be1) {
+		if (_iFree > 20) {
+			get = _FreeList.front();
+			get->setBehavior(MAINGUN);
+			get->setPosition(Vec2(675, 132));
+			get->setGravity(_fGravity);
+			get->setWind(_fWind);
+			_FreeList.pop_front();
+			_InUsedList.push_front(get);
+			_iFree--; _iInUsed++;
+
+		}
+	}
+	else if (_be2) {
+
+	}
+	else if (_be3) {
+
 	}
 }
 
@@ -503,10 +545,31 @@ void CParticleSystem::onTouchesMoved(const cocos2d::CCPoint &touchPoint)
 		break;
 	}
 }
+
 void CParticleSystem::onTouchesEnd(const cocos2d::CCPoint &touchPoint) {
 	switch (_iType) {
 	case CRAM:
 		SimpleAudioEngine::getInstance()->stopEffect(eid);
 		break;
 	}
+
+	/*CParticle *get;
+	if (_be1) {
+		if (_iFree != 0) {
+				get = _FreeList.front();
+				get->setBehavior(MAINGUN);
+				get->setPosition(Vec2(675,132));
+				get->setGravity(_fGravity);
+				get->setWind(_fWind);
+				_FreeList.pop_front();
+				_InUsedList.push_front(get);
+				_iFree--; _iInUsed++;
+		}
+	}
+	else if (_be2) {
+
+	}
+	else if (_be3) {
+
+	}*/
 }

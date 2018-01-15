@@ -21,9 +21,16 @@ private:
 	int _iEType = 100;//目前是哪一種Emitter狀態
 
 	bool _bEmitterOn; // Emitter 是否顯示
+
+	
 	cocos2d::Point _pos;
 public:
 	cocos2d::Color3B _color;	// 分子的顏色(gonna use)
+
+	bool _be1 = false;//e1開關
+	bool _be2 = false;//e2開關
+	bool _be3 = false;//e3開關
+
 
 	unsigned int eid;
 

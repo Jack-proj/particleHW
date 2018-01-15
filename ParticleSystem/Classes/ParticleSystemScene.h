@@ -36,6 +36,11 @@ private:
 	// For Emitter
 	CDraggableSprite *_EmitterSprite;
 	bool _bEmitterOn;
+
+	//bool _be1;
+	//bool _be2;
+	//bool _be3;
+
 	CSwitchButton *_emitterSwitchBtn;
 	
 	CSwitchButton *_bubbleBtn;
@@ -45,7 +50,9 @@ private:
 	CSwitchButton *_flareBtn;
 	CSwitchButton *_raindropBtn;
 	CSwitchButton *_sparkBtn;
-
+	CSwitchButton *_e1Btn;
+	CSwitchButton *_e2Btn;
+	CSwitchButton *_e3Btn;
 
 
 public:

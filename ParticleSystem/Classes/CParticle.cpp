@@ -196,6 +196,57 @@ bool CParticle::doStep(float dt)
 			_OldPos = _Particle->getPosition();
 		}
 		break;
+	case MAINGUN:
+		if (!_bVisible && _fElapsedTime >= _fDelayTime) {
+			_fElapsedTime = _fElapsedTime - _fDelayTime; // 重新開始計時
+			_bVisible = true;
+			_Particle->setVisible(_bVisible);
+			_Particle->setColor(_color);
+			_Particle->setPosition(Vec2(675,132));
+		}
+		else if (_fElapsedTime > _fLifeTime) {
+			_bVisible = false;
+			_Particle->setVisible(_bVisible);
+			return true; // 分子生命週期已經結束
+		}
+		else {
+			sint = sinf(M_PI*_fElapsedTime / _fLifeTime);
+			cost = cosf(M_PI_2*_fElapsedTime / _fLifeTime);
+			_Particle->setScale(0.5+ sint*2.0);
+			_Particle->setOpacity(_fOpacity * cost);
+			_Particle->setColor(Color3B(INTENSITY(_color.r*(1 + sint)), INTENSITY(_color.g*(1 + sint)), INTENSITY(_color.b*(1 + sint))));
+			_Pos.x += (_Direction.x + _fWind*sint)  * cost * _fVelocity * dt * PIXEL_PERM;
+			float tt = GRAVITY_Y(_fElapsedTime, dt, _fGravity);
+			_Pos.y += (_Direction.y * cost * _fVelocity + tt)* dt * PIXEL_PERM;
+			_Particle->setPosition(_Pos);
+		}
+		break;
+	case SMOKE:
+		if (!_bVisible && _fElapsedTime >= _fDelayTime) {
+			_fElapsedTime = _fElapsedTime - _fDelayTime; // 重新開始計時
+			_bVisible = true;
+			_Particle->setVisible(_bVisible);
+			_Particle->setColor(_color);
+			_Particle->setPosition(Vec2(675, 132));
+		}
+		else if (_fElapsedTime > _fLifeTime) {
+			_bVisible = false;
+			_Particle->setVisible(_bVisible);
+			return true; // 分子生命週期已經結束
+		}
+		else{
+
+			sint = sinf(M_PI*_fElapsedTime / _fLifeTime);
+			cost = cosf(M_PI_2*_fElapsedTime / _fLifeTime);
+			_Particle->setScale(0.5 + cost*2.0);
+			_Particle->setOpacity(_fOpacity * cost);
+			_Particle->setColor(Color3B(INTENSITY(_color.r*(1 + sint)), INTENSITY(_color.g*(1 + sint)), INTENSITY(_color.b*(1 + sint))));
+			float tt = GRAVITY_Y(_fElapsedTime, dt, _fGravity);
+			_Pos.x += (_Direction.x + _fWind*sint)  * cost * _fVelocity * dt * PIXEL_PERM;
+			_Pos.y += (_Direction.y * cost * _fVelocity/* + tt*/)* dt * PIXEL_PERM;
+			_Particle->setPosition(_Pos);
+		}
+		break;
 	case APIT:
 		if (!_bVisible && _fElapsedTime >= _fDelayTime) {
 			_fElapsedTime = _fElapsedTime - _fDelayTime; // 重新開始計時
@@ -395,10 +446,38 @@ void CParticle::setBehavior(int iType)
 		_fSize = 1;
 		_color = Color3B(230,70,70);
 		_fElapsedTime = 1;
-//		_fDelayTime = rand() % 100 / 1000.0f;
 		_fGravity = 0;
 		break;
 
+	case MAINGUN:
+		_fVelocity = 1.0f;
+		t = 2.0f * M_PI * (rand() % 1000) / 1000.0f;
+		_Direction.x = -5;
+		_Direction.y = 20;
+		_fLifeTime = 1.5f;
+		_fIntensity = 2;
+		_fOpacity = 255;
+		_fSpin = 0;
+		_fSize = 10;
+		_color = Color3B(255, 255, 255);
+		_fElapsedTime = 0;
+		_fGravity = 0;
+		break;
+	case SMOKE:
+		_fVelocity = 1.5f + rand() % 10 / 10.0f;
+		t = ((rand() % 100)-25)/5;
+		_Direction.x = t;
+		_Direction.y = 0;
+		_fLifeTime = 3.0f + LIFE_NOISE(0.15f);
+		_fIntensity = 2;
+		_fOpacity = 255;
+		_fSpin = 0;
+		_fSize = 15;
+		_color = Color3B(255, 255, 255);
+		_fElapsedTime = 0;
+		_fDelayTime = rand() % 100 / 1000.0f;
+		_fGravity = 0;
+		break;
 	case APIT:
 		_fVelocity = 15.0f; //+ rand() % 10 / 10.0f;
 		t = 2.0f * M_PI *(rand() % 1000) / 1000.0f;

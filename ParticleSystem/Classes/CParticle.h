@@ -13,6 +13,7 @@
 #define AP_WITH_T 8 //¬ï¥Ò¼u/¦²¥ú¼u
 #define MAINGUN 9 //¥D¯¥
 #define APIT 10 //¬ï¥Ò¿U¿N¦²¥ú¼u
+#define SMOKE 1937
 
 #define EMITTER_DEFAULT 100
 #define EMITTER_FIREWORKS 101//·Ï¤õ

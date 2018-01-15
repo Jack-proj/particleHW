@@ -115,6 +115,29 @@ bool ParticleSystemScene::init()
 	_sparkBtn->setButtonInfo("spark.png", "spark.png", "spark.png", sparkloc);
 	this->addChild(_sparkBtn, 2);
 
+	//for e1
+	auto e1pos = (Sprite *)(rootNode->getChildByName("Button_e1"));
+	Point e1loc = e1pos->getPosition();
+	e1pos->setVisible(false);
+	_e1Btn = CSwitchButton::create();
+	_e1Btn->setButtonInfo("emitteroff.png", "emitteron.png", "emittertd.png", e1loc);
+	this->addChild(_e1Btn, 2);
+
+	//for e2
+	auto e2pos = (Sprite *)(rootNode->getChildByName("Button_e2"));
+	Point e2loc = e2pos->getPosition();
+	e2pos->setVisible(false);
+	_e2Btn = CSwitchButton::create();
+	_e2Btn->setButtonInfo("emitteroff.png", "emitteron.png", "emittertd.png", e2loc);
+	this->addChild(_e2Btn, 2);
+
+	//for e3
+	auto e3pos = (Sprite *)(rootNode->getChildByName("Button_e3"));
+	Point e3loc = e3pos->getPosition();
+	e3pos->setVisible(false);
+	_e3Btn = CSwitchButton::create();
+	_e3Btn->setButtonInfo("emitteroff.png", "emitteron.png", "emittertd.png", e3loc);
+	this->addChild(_e3Btn, 2);
 
 	// Particle Control System
 	// 最好的方式是，以下的 Slider 根據這裡的設定值，顯示出正確的數值與位置
@@ -315,7 +338,27 @@ void  ParticleSystemScene::onTouchEnded(cocos2d::Touch *pTouch, cocos2d::Event *
 		_ParticleControl.setNewPic("spark.png", *this);
 	}
 
-
+	//e1
+	if (_e1Btn->touchesEnded(touchLoc))
+	{
+		_ParticleControl._be1 = true;
+		_ParticleControl._be2 = false;
+		_ParticleControl._be3 = false;
+	}
+	//e2
+	if (_e2Btn->touchesEnded(touchLoc))
+	{
+		_ParticleControl._be1 = false;
+		_ParticleControl._be2 = true;
+		_ParticleControl._be3 = false;
+	}
+	//e3
+	if (_e3Btn->touchesEnded(touchLoc))
+	{
+		_ParticleControl._be1 = false;
+		_ParticleControl._be2 = false;
+		_ParticleControl._be3 = true;
+	}
 }
 
 
