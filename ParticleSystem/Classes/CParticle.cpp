@@ -235,7 +235,6 @@ bool CParticle::doStep(float dt)
 			return true; // 分子生命週期已經結束
 		}
 		else{
-
 			sint = sinf(M_PI*_fElapsedTime / _fLifeTime);
 			cost = cosf(M_PI_2*_fElapsedTime / _fLifeTime);
 			_Particle->setScale(0.5 + cost*2.0);
